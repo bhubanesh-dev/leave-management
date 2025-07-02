@@ -42,7 +42,7 @@ const PasswordChange: React.FC = () => {
         toast(error.message);
     }
     setFormData({
-      currentPassword: '',
+   
       newPassword: '',
       confirmPassword: ''
     });
