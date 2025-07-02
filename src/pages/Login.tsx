@@ -6,55 +6,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import authApi from '@/apis/auth';
 import routes from '@/routes';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
-
 
 const LoginPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-
-    const checkPassword = (password: string) => {
-
-        const passwordPraser =  password.split("");
-
-        const num = [1,2,3,4,5,6,7,8,9,0];
-        const specialChar = ['@','-','_'];
-        
-
-        const isNumberIncluded  = passwordPraser.map((it)=> num.includes(parseInt(it)) ? it : null).filter(it=>it!= null).join("");
-
-        if(isNaN(parseInt(isNumberIncluded) )){
-
-            toast("you miss numbers in password ")
-        }
-
-        const isSpecialCharIncluded = passwordPraser.map((it) => specialChar.includes(it) ? it : null ).filter(it=>it!= null).join("");
-
-        console.log(isSpecialCharIncluded);
-
-        if(isSpecialCharIncluded == ""){
-               toast("you miss special char ");
-
-        }
-
-        const alphabet = /[a-zA-Z]/;
-
-        if(!alphabet.test(password)){
-            toast("you miss alphabet")
-        }
-
-
-    }
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-
-        // checkPassword(password);
-
-
         try {
             const loginResponse = await authApi.login(email, password);
             if (loginResponse.status === 200) {
