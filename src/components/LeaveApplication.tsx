@@ -40,7 +40,7 @@ const LeaveApplication: React.FC = () => {
       return;
     }
 
-    if (daysRequested > user?.leaveBalance) {
+    if (daysRequested > (user?.leaveBalance ?? 0)) {
       toast("Your are short of leaves");
       return
     }
